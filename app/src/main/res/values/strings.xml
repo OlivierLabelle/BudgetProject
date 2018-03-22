@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Budget Project</string>
+    <string name="pop_title_budget">pop title budget</string>
+    <string name="pop_description_budget">pop description</string>
+    <string name="create_new">Create</string>
+    <string name="cancel">Quit</string>
+</resources>
