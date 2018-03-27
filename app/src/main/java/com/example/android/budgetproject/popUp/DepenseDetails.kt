@@ -22,7 +22,6 @@ object DepenseDetails {
 
     @SuppressLint("InflateParams")
     fun createTransaction(context: Activity): AlertDialog {
-        val activity = MainActivity()
         val alertDialog = AlertDialog.Builder(context)
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val alertLayout = layoutInflater.inflate(R.layout.new_transaction, null, false) as RelativeLayout
@@ -41,7 +40,7 @@ object DepenseDetails {
             transaction.put("Description", description)
             transaction.put("Date", date)
             db.insert("TN_Transaction", null, transaction)
-            activity.notifyDataChanged()
+            transactionAdapter.notfier()
 
             //Todo Assurer 2 champs sont valide.
             //Todo Saver les donners dans la DB
@@ -51,11 +50,4 @@ object DepenseDetails {
         alertDialog.show()
         return alertDialog.create()
     }
-
-   //ContentValues insertValues = new ContentValues();
-   //insertValues.put("Description", "Electricity");
-   //insertValues.put("Amount", 500);
-   //insertValues.put("Trans", 1);
-   //insertValues.put("EntryDate", "04/06/2011");
-   //db.insert("CashData", null, insertValues);
 }

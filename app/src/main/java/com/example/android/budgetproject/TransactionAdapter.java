@@ -81,6 +81,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+
+    public void notfier(){
+        notifyDataSetChanged();
+    }
 }
 
 
