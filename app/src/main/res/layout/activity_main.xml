@@ -2,10 +2,12 @@
 <layout>
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="vm"
-            type="com.example.android.budgetproject.BudgetVM"/>
+            type="com.example.android.budgetproject.BudgetVM" />
     </data>
 
     <LinearLayout
@@ -22,32 +24,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:text="budget restant"
-            android:layout_margin="16dp"/>
+            android:layout_margin="16dp"
+            android:text="@string/budget_restant"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_budget_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textSize="30dp"
-            android:textStyle="bold"
+            android:layout_margin="16dp"
             android:text="@{vm.budgetTotal}"
-            tools:text="budget total"
-            android:layout_margin="16dp"/>
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="budget total" />
 
         <TextView
             android:id="@+id/tv_depense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textSize="30dp"
-            android:textStyle="bold"
+            android:layout_margin="16dp"
             android:text="@{vm.depenseTotal}"
-            tools:text="depense"
-            android:layout_margin="16dp"/>
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="depense" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,23 +60,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_weight="1"
                 android:onClick="@{vm.updateBudgetOnClick()}"
-                android:text="Update Budget"
-                android:textAllCaps="false"
-                android:layout_weight="1"/>
+                android:text="@string/update_budget"
+                android:textAllCaps="false" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_weight="1"
                 android:onClick="@{vm.newTransactionOnClick()}"
-                android:text="New depense"
-                android:textAllCaps="false"
-                android:layout_weight="1"/>
+                android:text="@string/new_depense"
+                android:textAllCaps="false" />
 
         </LinearLayout>
 

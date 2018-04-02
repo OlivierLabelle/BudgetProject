@@ -4,4 +4,7 @@
     <string name="pop_description_budget">pop description</string>
     <string name="create_new">Create</string>
     <string name="cancel">Quit</string>
+    <string name="budget_restant">budget restant</string>
+    <string name="update_budget">Update Budget</string>
+    <string name="new_depense">New depense</string>
 </resources>

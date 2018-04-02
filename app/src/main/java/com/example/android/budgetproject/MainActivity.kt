@@ -1,5 +1,6 @@
 package com.example.android.budgetproject
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     lateinit var rv: RecyclerView
     lateinit var transactionAdapter: TransactionAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         budget = getSharedPreferences("Budget", Context.MODE_PRIVATE)
         budget.registerOnSharedPreferenceChangeListener(this)
         budgetTotal = budget.getString("BudgetTotal", null)
+        MyDatabase.getInstance()
         if(budgetTotal == null) {
             val budgetEditor = this.getSharedPreferences("Budget", Context.MODE_PRIVATE).edit()
             budgetEditor.putString("Depense", "0").apply()
@@ -37,20 +40,10 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         } else {
             vm.budgetTotal.set(budgetTotal)
         }
-        val dbHelper = TransactionDBHelper(this)
-        var transactionList = dbHelper.allTransaction
-        rv = rv_transaction
-        transactionAdapter = TransactionAdapter(transactionList)
         val mLayoutManager = LinearLayoutManager(applicationContext)
         rv.layoutManager = mLayoutManager
         rv.itemAnimator = DefaultItemAnimator()
-        rv.adapter = transactionAdapter
         vm.listener = this
-    }
-
-    fun notifyDataChanged(){
-        transactionAdapter.notifyDataSetChanged()
-        Toast.makeText(this, "data updated", Toast.LENGTH_SHORT).show()
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
@@ -58,7 +51,5 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
 
     override fun newTransactionClicked(){
-        DepenseDetails.createTransaction(this).setOnDismissListener(DialogInterface.OnDismissListener {
-        })
     }
 }
