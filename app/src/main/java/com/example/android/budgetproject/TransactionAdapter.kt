@@ -1,11 +1,10 @@
 package com.example.android.budgetproject
 
-import android.support.v7.util.DiffUtil
+import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.row_depense_fragment.view.*
 
@@ -14,11 +13,11 @@ import kotlinx.android.synthetic.main.row_depense_fragment.view.*
  */
 
 class TransactionAdapter(private val clickListener: (Transaction) -> Unit):
-        ListAdapter<Transaction>(TransactionDiffCallback()) {
+        ListAdapter<Transaction, TransactionAdapter.ViewHolder>(TransactionDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(inflater.inflate(R.layout.row_depense_fragment, parent, false)
+        return ViewHolder(inflater.inflate(R.layout.row_depense_fragment, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
