@@ -4,7 +4,7 @@ import android.support.v7.util.DiffUtil
 
 class TransactionDiffCallback : DiffUtil.ItemCallback<Transaction>() {
     override fun areItemsTheSame(oldItem: Transaction?, newItem: Transaction?): Boolean {
-        return oldItem?.id == newItem?.id
+        return oldItem?.uid == newItem?.uid
     }
 
     override fun areContentsTheSame(oldItem: Transaction?, newItem: Transaction?): Boolean {

@@ -8,7 +8,5 @@ import android.arch.persistence.room.PrimaryKey
 data class Transaction(
         @ColumnInfo(name = "depense") var depense: String = "",
         @ColumnInfo(name = "description") var description: String = "",
-        @ColumnInfo(name = "date") var date: String = ""){
-    @ColumnInfo(name = "id")
-    @PrimaryKey(autoGenerate = true) var id: Long = 0
-}
+        @ColumnInfo(name = "date") var date: String = "",
+        @PrimaryKey(autoGenerate = true) var uid: Long = 0)

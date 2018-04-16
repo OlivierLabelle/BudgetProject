@@ -1,22 +1,22 @@
-package com.example.android.budgetproject;
+package com.example.android.budgetproject
 
 
 import android.arch.persistence.room.*
-import android.arch.persistence.room.Transaction
+import com.example.android.budgetproject.Transaction
+import android.arch.persistence.room.Delete
+import android.arch.persistence.room.Dao
 
-@Dao interface TransactionDao {
+@Dao
+interface TransactionDao {
 
-    @Query("select * from `transaction`")
+    @Query("SELECT * FROM `transaction`")
     fun getAllTransaction(): List<Transaction>
 
-    @Query("select * from `transaction` where id = id")
-    fun findTransactionById(id: Long): Transaction
+    @Query("SELECT * FROM `transaction` where uid IN (:transactionId)")
+    fun findTransactionById(transactionId: IntArray): List<Transaction>
 
     @Insert(onConflict = 1)
     fun insertTransaction(transaction: Transaction)
-
-    @Update(onConflict = 1)
-    fun updateTransaction(task: Transaction)
 
     @Delete
     fun deleteTransaction(transaction: Transaction)
