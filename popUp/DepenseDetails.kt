@@ -18,8 +18,6 @@ import java.text.NumberFormat
  */
 object DepenseDetails {
 
-    lateinit var transactionAdapter: TransactionAdapter
-
     @SuppressLint("InflateParams")
     fun createTransaction(context: Activity): AlertDialog {
         val activity = MainActivity()
