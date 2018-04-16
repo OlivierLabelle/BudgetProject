@@ -27,19 +27,18 @@ object DepenseDetails {
         val alertLayout = layoutInflater.inflate(R.layout.new_transaction, null, false) as RelativeLayout
         alertDialog.setView(alertLayout)
         context.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-        val edMontant = alertLayout.findViewById<EditText>(R.id.ed_montant)
+        val edDepense = alertLayout.findViewById<EditText>(R.id.ed_montant)
         val edDescription = alertLayout.findViewById<EditText>(R.id.ed_description)
         val edDate = alertLayout.findViewById<EditText>(R.id.ed_date)
-        alertDialog.setPositiveButton(R.string.create_new, DialogInterface.OnClickListener { dialog, which ->
-            val montant = edMontant.text.toString()
+        alertDialog.setPositiveButton(R.string.create_new, { dialog, which ->
+            val depense = edDepense.text.toString()
             val description = edDescription.text.toString()
             val date = edDate.text.toString()
-
-
+            TransactionCreation().transactionCreation(depense, description, date)
+            transactionAdapter.notifyDataSetChanged()
             //Todo Assurer 2 champs sont valide.
-            //Todo Saver les donners dans la DB
         })
-        alertDialog.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener{ dialog, which ->
+        alertDialog.setNegativeButton(R.string.cancel, { dialog, which ->
         })
         alertDialog.show()
         return alertDialog.create()

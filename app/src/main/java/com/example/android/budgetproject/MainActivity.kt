@@ -1,6 +1,5 @@
 package com.example.android.budgetproject
 
-import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import android.content.SharedPreferences
@@ -8,9 +7,6 @@ import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android.budgetproject.databinding.ActivityMainBinding
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import com.example.android.budgetproject.popUp.DepenseDetails
 import com.example.android.budgetproject.popUp.NewBudget
 
