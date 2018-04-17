@@ -18,8 +18,6 @@ import java.text.NumberFormat
  */
 object DepenseDetails {
 
-    lateinit var transactionAdapter: TransactionAdapter
-
     @SuppressLint("InflateParams")
     fun createTransaction(context: Activity): AlertDialog {
         val alertDialog = AlertDialog.Builder(context)
@@ -35,7 +33,6 @@ object DepenseDetails {
             val description = edDescription.text.toString()
             val date = edDate.text.toString()
             TransactionCreation().transactionCreation(depense, description, date)
-            transactionAdapter.notifyDataSetChanged()
             //Todo Assurer 2 champs sont valide.
         })
         alertDialog.setNegativeButton(R.string.cancel, { dialog, which ->
