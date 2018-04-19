@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import com.example.android.budgetproject.databinding.ActivityMainBinding
 import com.example.android.budgetproject.popUp.DepenseDetails
 import com.example.android.budgetproject.popUp.NewBudget
@@ -15,7 +16,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     lateinit var budget : SharedPreferences
     var budgetTotal: String? = null
     val vm = BudgetVM()
-    lateinit var myDatabase: RoomDatabase
+    lateinit var db: RoomDatabase
+    lateinit var adapter: TransactionAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +29,26 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         budget = getSharedPreferences("Budget", Context.MODE_PRIVATE)
         budget.registerOnSharedPreferenceChangeListener(this)
         budgetTotal = budget.getString("BudgetTotal", null)
+        adapter = TransactionAdapter()
         //Open Dialog if new user.
         if(budgetTotal == null) {
             NewBudget.createPopUp(this)
         } else {
             vm.budgetTotal.set(budgetTotal)
         }
-        //Room DB
-        myDatabase = MyDatabase.getInstance()
         vm.listener = this
+        //Room
+        db = MyDatabase.getInstance()
+        //Adapter
+        val handler = Handler()
+        Thread({
+            val transactionFromDb = MyDatabase.mInstance?.transactionDao()?.getAllTransaction()
+            handler.post({
+                if (transactionFromDb != null) adapter.addTransaction(transactionFromDb)
+            })
+        }).start()
+        adapter.notifyDataSetChanged()
+
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
