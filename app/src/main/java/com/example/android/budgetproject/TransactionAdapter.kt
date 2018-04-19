@@ -37,7 +37,6 @@ class TransactionAdapter(private val clickListener: ButtonClick? = null):
             itemView.setOnClickListener{
                clickListener?.clicked(adapterPosition)
             }
-
         }
     }
 

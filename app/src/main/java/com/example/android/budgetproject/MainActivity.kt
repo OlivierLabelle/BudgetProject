@@ -42,14 +42,13 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         //Adapter
         val handler = Handler()
         Thread({
-            val transaction = MyDatabase.mInstance?.transactionDao()?.getAllTransaction()
+            val transactionFromDb = MyDatabase.mInstance?.transactionDao()?.getAllTransaction()
             handler.post({
-                if (transaction != null) {
-                    adapter.addTransaction(transaction)
-                    adapter.notifyDataSetChanged()
-                }
+                if (transactionFromDb != null) adapter.addTransaction(transactionFromDb)
             })
         }).start()
+        adapter.notifyDataSetChanged()
+
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
