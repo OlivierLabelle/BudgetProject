@@ -7,6 +7,8 @@ import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.example.android.budgetproject.databinding.ActivityMainBinding
 import com.example.android.budgetproject.popUp.DepenseDetails
 import com.example.android.budgetproject.popUp.NewBudget
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     val vm = BudgetVM()
     lateinit var db: RoomDatabase
     lateinit var adapter: TransactionAdapter
+    var  recyclerView: RecyclerView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +33,9 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         budget.registerOnSharedPreferenceChangeListener(this)
         budgetTotal = budget.getString("BudgetTotal", null)
         adapter = TransactionAdapter()
+        recyclerView = findViewById(R.id.rv_transaction)
+        recyclerView?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView?.adapter = adapter
         //Open Dialog if new user.
         if(budgetTotal == null) {
             NewBudget.createPopUp(this)
@@ -38,16 +44,14 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         }
         vm.listener = this
         //Room
-        db = MyDatabase.getInstance()
         //Adapter
-        val handler = Handler()
         Thread({
-            val transactionFromDb = MyDatabase.mInstance?.transactionDao()?.getAllTransaction()
-            handler.post({
-                if (transactionFromDb != null) adapter.addTransaction(transactionFromDb)
+            val transactionFromDb = MyDatabase.getInstance().transactionDao().getAllTransaction()
+            runOnUiThread({
+                adapter.submitList(transactionFromDb)
+                adapter.notifyDataSetChanged()
             })
         }).start()
-        adapter.notifyDataSetChanged()
 
     }
 

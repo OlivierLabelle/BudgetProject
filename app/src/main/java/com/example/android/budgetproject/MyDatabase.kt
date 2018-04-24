@@ -10,7 +10,7 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun transactionDao(): TransactionDao
 
     companion object {
-        var mInstance: MyDatabase? = null
+        private var mInstance: MyDatabase? = null
         @JvmStatic
         fun getInstance(): MyDatabase {
             if (mInstance == null) {

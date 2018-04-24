@@ -32,20 +32,12 @@ class TransactionAdapter(private val clickListener: ButtonClick? = null):
 
         fun bind(transaction: Transaction){
             itemView.tv_depense_description.text = transaction.description
-            itemView.tv_depense.text = transaction.depense
+            itemView.tv_depense_montant.text = transaction.depense
             itemView.tv_depense_date.text = transaction.date
             itemView.setOnClickListener{
                clickListener?.clicked(adapterPosition)
             }
         }
-    }
-
-    private var transactionList = ArrayList<Transaction>()
-
-    fun addTransaction(list: List<Transaction>){
-        transactionList.clear()
-        transactionList.addAll(list)
-        notifyDataSetChanged()
     }
 }
 
