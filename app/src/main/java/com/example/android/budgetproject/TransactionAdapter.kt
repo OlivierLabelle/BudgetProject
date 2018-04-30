@@ -5,18 +5,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.row_depense_fragment.view.*
 
 /**
  * Created by olivier on 2018-03-13.
  */
 
-class TransactionAdapter(private val clickListener: ButtonClick? = null):
+class TransactionAdapter(private val clickListener: TransactionClick? = null):
         ListAdapter<Transaction, TransactionAdapter.ViewHolder>(TransactionDiffCallback()) {
 
-    interface ButtonClick{
-        fun clicked(id: Int)
+    interface TransactionClick{
+        fun transactionClicked(id: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,8 +33,8 @@ class TransactionAdapter(private val clickListener: ButtonClick? = null):
             itemView.tv_depense_description.text = transaction.description
             itemView.tv_depense_montant.text = transaction.depense
             itemView.tv_depense_date.text = transaction.date
-            itemView.setOnClickListener{
-               clickListener?.clicked(adapterPosition)
+            itemView.ll_row.setOnClickListener{
+               clickListener?.transactionClicked(adapterPosition)
             }
         }
     }

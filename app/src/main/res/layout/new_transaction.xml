@@ -71,7 +71,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/date"
         android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType="date" />
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/bt_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textAllCaps="false"
+        android:text="Delete"/>
 
 </RelativeLayout>

@@ -1,24 +1,22 @@
 package com.example.android.budgetproject
 
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import android.content.SharedPreferences
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.android.budgetproject.databinding.ActivityMainBinding
 import com.example.android.budgetproject.popUp.DepenseDetails
+import com.example.android.budgetproject.popUp.EditDetails
 import com.example.android.budgetproject.popUp.NewBudget
 
 
-class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener, BudgetVM.NewButtonClick {
+class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener, BudgetVM.NewButtonClick{
     lateinit var budget : SharedPreferences
     var budgetTotal: String? = null
     val vm = BudgetVM()
-    lateinit var db: RoomDatabase
     lateinit var adapter: TransactionAdapter
     var  recyclerView: RecyclerView? = null
 
@@ -61,5 +59,9 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
     override fun newTransactionClicked(){
         DepenseDetails.createTransaction(this)
+    }
+
+    override fun transactionClicked() {
+        EditDetails.editTransaction(this)
     }
 }

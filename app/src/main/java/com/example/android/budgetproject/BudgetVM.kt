@@ -3,6 +3,7 @@ package com.example.android.budgetproject
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import android.view.View
+import android.view.ViewAnimationUtils
 
 
 /**
@@ -18,6 +19,7 @@ class BudgetVM : ViewModel() {
 
     interface NewButtonClick{
         fun newTransactionClicked()
+        fun transactionClicked()
     }
 
     fun newTransactionOnClick(): View.OnClickListener{
@@ -29,6 +31,12 @@ class BudgetVM : ViewModel() {
     fun updateBudgetOnClick(): View.OnClickListener{
         return View.OnClickListener {
 
+        }
+    }
+
+    fun transactionClicked(): View.OnClickListener{
+        return View.OnClickListener {
+            listener?.transactionClicked()
         }
     }
 }
