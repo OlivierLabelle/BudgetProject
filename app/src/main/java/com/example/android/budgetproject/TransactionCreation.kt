@@ -1,8 +1,10 @@
 package com.example.android.budgetproject
 
+import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.widget.Toast
 
+@SuppressLint("StaticFieldLeak")
 class TransactionCreation {
 
     val db = MyDatabase
@@ -18,12 +20,13 @@ class TransactionCreation {
 
             override fun onPostExecute(result: Void?) {
                 super.onPostExecute(result)
-                Toast.makeText(BudgetApplication.getContext(), "Transaction saved", Toast.LENGTH_SHORT)
+                Toast.makeText(BudgetApplication.getContext(), "Transaction saved", Toast.LENGTH_SHORT).show()
             }
         }.execute()
     }
 
-    fun transactionDeletation(){
+    fun transactionDeletation(uid: Long){
+        val currentTransaction = Transaction(uid)
 
         object : AsyncTask<Void, Void, Void>() {
             override fun doInBackground(vararg params: Void?): Void? {
@@ -33,7 +36,7 @@ class TransactionCreation {
 
             override fun onPostExecute(result: Void?) {
                 super.onPostExecute(result)
-                Toast.makeText(BudgetApplication.getContext(), "Transaction saved", Toast.LENGTH_SHORT)
+                Toast.makeText(BudgetApplication.getContext(), "Transaction saved", Toast.LENGTH_SHORT).show()
             }
         }.execute()
     }

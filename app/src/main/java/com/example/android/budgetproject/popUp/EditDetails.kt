@@ -14,7 +14,7 @@ import com.example.android.budgetproject.TransactionCreation
 object EditDetails {
 
     @SuppressLint("InflateParams")
-    fun editTransaction(context: Activity): AlertDialog {
+    fun editTransaction(context: Activity, uid: Long): AlertDialog {
         val alertDialog = AlertDialog.Builder(context)
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val alertLayout = layoutInflater.inflate(R.layout.new_transaction, null, false) as RelativeLayout
@@ -33,7 +33,7 @@ object EditDetails {
         alertDialog.setNegativeButton(R.string.cancel, { dialog, which ->
         })
         alertDialog.setNeutralButton(R.string.delete, { dialog, which ->
-            TransactionCreation().transactionDeletation()
+            TransactionCreation().transactionDeletation(uid)
         })
         alertDialog.show()
         return alertDialog.create()

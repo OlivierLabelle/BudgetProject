@@ -19,7 +19,6 @@ class BudgetVM : ViewModel() {
 
     interface NewButtonClick{
         fun newTransactionClicked()
-        fun transactionClicked()
     }
 
     fun newTransactionOnClick(): View.OnClickListener{
@@ -31,12 +30,6 @@ class BudgetVM : ViewModel() {
     fun updateBudgetOnClick(): View.OnClickListener{
         return View.OnClickListener {
 
-        }
-    }
-
-    fun transactionClicked(): View.OnClickListener{
-        return View.OnClickListener {
-            listener?.transactionClicked()
         }
     }
 }

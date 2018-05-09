@@ -15,7 +15,7 @@ class TransactionAdapter(private val clickListener: TransactionClick? = null):
         ListAdapter<Transaction, TransactionAdapter.ViewHolder>(TransactionDiffCallback()) {
 
     interface TransactionClick{
-        fun transactionClicked(id: Int)
+        fun transactionClicked(id: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +34,7 @@ class TransactionAdapter(private val clickListener: TransactionClick? = null):
             itemView.tv_depense_montant.text = transaction.depense
             itemView.tv_depense_date.text = transaction.date
             itemView.ll_row.setOnClickListener{
-               clickListener?.transactionClicked(adapterPosition)
+               clickListener?.transactionClicked(transaction.uid)
             }
         }
     }

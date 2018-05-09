@@ -13,7 +13,7 @@ import com.example.android.budgetproject.popUp.EditDetails
 import com.example.android.budgetproject.popUp.NewBudget
 
 
-class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener, BudgetVM.NewButtonClick{
+class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener, BudgetVM.NewButtonClick, TransactionAdapter.TransactionClick{
     lateinit var budget : SharedPreferences
     var budgetTotal: String? = null
     val vm = BudgetVM()
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         budget = getSharedPreferences("Budget", Context.MODE_PRIVATE)
         budget.registerOnSharedPreferenceChangeListener(this)
         budgetTotal = budget.getString("BudgetTotal", null)
-        adapter = TransactionAdapter()
+        adapter = TransactionAdapter(this)
         recyclerView = findViewById(R.id.rv_transaction)
         recyclerView?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView?.adapter = adapter
@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
             })
         }).start()
 
+
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         DepenseDetails.createTransaction(this)
     }
 
-    override fun transactionClicked() {
-        EditDetails.editTransaction(this)
+    override fun transactionClicked(uid: Long) {
+        EditDetails.editTransaction(this, uid)
     }
 }
