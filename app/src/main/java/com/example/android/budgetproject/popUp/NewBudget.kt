@@ -18,14 +18,12 @@ object NewBudget{
         alertDialog.setMessage(context.getString(R.string.pop_description_budget))
         val input = EditText(context)
         input.requestFocus()
-        context.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
         alertDialog.setView(input)
         alertDialog.setPositiveButton(R.string.create_new, DialogInterface.OnClickListener { dialog, which ->
             val budgetEditor = context.getSharedPreferences("Budget", Context.MODE_PRIVATE).edit()
             budgetEditor.putString("BudgetTotal", input.text.toString()).apply()
         })
         alertDialog.setNegativeButton(R.string.cancel, DialogInterface.OnClickListener{ dialog, which ->
-            context.finish()
         })
         alertDialog.show()
         return alertDialog.create()

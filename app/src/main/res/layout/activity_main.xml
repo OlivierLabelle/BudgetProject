@@ -10,14 +10,14 @@
             type="com.example.android.budgetproject.BudgetVM" />
     </data>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.android.budgetproject.MainActivity">
+        tools:context="com.example.android.budgetproject.MainActivity"
+        android:background="@color/skyblue">
 
         <TextView
             android:id="@+id/tv_budget_restant"
@@ -25,6 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
+            android:focusable="true"
+            android:textColor="@color/white"
             android:text="@string/budget_restant"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -35,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
+            android:textColor="@color/white"
             android:text="@{vm.budgetTotal}"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -46,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
+            android:textColor="@color/white"
             android:text="@{vm.depenseTotal}"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -57,22 +61,28 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@color/colorAccent"
                 android:onClick="@{vm.updateBudgetOnClick()}"
                 android:text="@string/update_budget"
                 android:textAllCaps="false" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/colorAccent"
                 android:layout_weight="1"
                 android:onClick="@{vm.newTransactionOnClick()}"
                 android:text="@string/new_depense"
@@ -82,6 +92,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_transaction"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

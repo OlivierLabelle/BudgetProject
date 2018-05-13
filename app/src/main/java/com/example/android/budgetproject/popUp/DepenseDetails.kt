@@ -5,6 +5,8 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.WindowManager
@@ -18,16 +20,21 @@ import java.text.NumberFormat
  */
 object DepenseDetails {
 
+    var list_of_items = (BudgetApplication.getContext().resources.getStringArray(R.array.description))
+
     @SuppressLint("InflateParams")
-    fun createTransaction(context: Activity): AlertDialog {
+    fun createTransaction(context: Activity, uid: Long? = null, updating: Boolean): AlertDialog {
         val alertDialog = AlertDialog.Builder(context)
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val alertLayout = layoutInflater.inflate(R.layout.new_transaction, null, false) as RelativeLayout
+        val alertLayout = layoutInflater.inflate(R.layout.new_transaction, null, false) as LinearLayout
         alertDialog.setView(alertLayout)
-        context.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
         val edDepense = alertLayout.findViewById<EditText>(R.id.ed_montant)
         val edDescription = alertLayout.findViewById<EditText>(R.id.ed_description)
         val edDate = alertLayout.findViewById<EditText>(R.id.ed_date)
+        val spinner = alertLayout.findViewById<Spinner>(R.id.spinner)
+        val spinnerAdapter = ArrayAdapter(BudgetApplication.getContext(), R.layout.custom_spinner, list_of_items)
+        spinnerAdapter.setDropDownViewResource(R.layout.row_spinner)
+        spinner!!.adapter = spinnerAdapter
         alertDialog.setPositiveButton(R.string.save, { dialog, which ->
             val depense = edDepense.text.toString()
             val description = edDescription.text.toString()
@@ -37,7 +44,12 @@ object DepenseDetails {
         })
         alertDialog.setNegativeButton(R.string.cancel, { dialog, which ->
         })
-        alertDialog.show()
+        if (updating){
+            alertDialog.setNeutralButton(R.string.delete, { dialog, which ->
+                TransactionCreation().transactionDeletation(uid!!)
+                MainActivity().recyclerView?.adapter?.notifyDataSetChanged()
+            })
+        }
         return alertDialog.create()
     }
 }

@@ -13,9 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:text="187.34" />
+        android:layout_margin="4dp"
+        tools:text="187.34"
+        android:background="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tv_depense_description"
@@ -23,9 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
+        android:layout_margin="4dp"
         android:textStyle="bold"
-        tools:text="patate" />
+        tools:text="patate"
+        android:background="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tv_depense_date"
@@ -33,7 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
+        android:layout_margin="4dp"
         android:textStyle="bold"
-        tools:text="15/15/15" />
+        tools:text="15/15/15"
+        android:background="@color/colorAccent" />
 </LinearLayout>

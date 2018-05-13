@@ -15,7 +15,7 @@ class TransactionAdapter(private val clickListener: TransactionClick? = null):
         ListAdapter<Transaction, TransactionAdapter.ViewHolder>(TransactionDiffCallback()) {
 
     interface TransactionClick{
-        fun transactionClicked(id: Long)
+        fun transactionClicked(uid: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

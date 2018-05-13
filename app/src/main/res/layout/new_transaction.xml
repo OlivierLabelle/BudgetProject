@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:text="New Transaction"
-        android:textSize="24sp"/>
+        android:textColor="@color/brun_fonce"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/montant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/titre"
         android:layout_marginTop="16dp"
         android:text="Montant"
-        android:textSize="20sp"/>
+        android:textColor="@color/colorAccentFonce"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/ed_montant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/montant"
         android:ems="6"
         android:inputType="numberDecimal"
-        android:textSize="16sp"/>
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ed_montant"
         android:layout_marginTop="20dp"
         android:text="Description"
-        android:textSize="20sp"/>
+        android:textColor="@color/colorAccentFonce"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Spinner>
 
     <EditText
         android:id="@+id/ed_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/description"
         android:layout_marginTop="16dp"
-        android:text="Enter description"/>
+        android:text="Enter description"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ed_description"
         android:layout_marginTop="20dp"
         android:text="Date"
-        android:textSize="20dp" />
+        android:textColor="@color/colorAccentFonce"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/ed_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/date"
-        android:layout_centerHorizontal="true"
-        android:ems="10" />
+        android:text="choose a date"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/bt_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:textAllCaps="false"
-        android:text="Delete"/>
-
-</RelativeLayout>
+</LinearLayout>

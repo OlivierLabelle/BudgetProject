@@ -26,17 +26,17 @@ class TransactionCreation {
     }
 
     fun transactionDeletation(uid: Long){
-        val currentTransaction = Transaction(uid)
+        val currentTransaction = Transaction("","","", uid)
 
         object : AsyncTask<Void, Void, Void>() {
             override fun doInBackground(vararg params: Void?): Void? {
-                db.getInstance().transactionDao().deleteTransaction(Transaction())
+                db.getInstance().transactionDao().deleteTransaction(currentTransaction)
                 return null
             }
 
             override fun onPostExecute(result: Void?) {
                 super.onPostExecute(result)
-                Toast.makeText(BudgetApplication.getContext(), "Transaction saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(BudgetApplication.getContext(), "Transaction deleted", Toast.LENGTH_SHORT).show()
             }
         }.execute()
     }
