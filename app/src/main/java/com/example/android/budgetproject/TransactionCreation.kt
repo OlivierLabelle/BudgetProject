@@ -9,7 +9,7 @@ class TransactionCreation {
 
     val db = MyDatabase
 
-    fun transactionCreation(depense: String, description: String, date: String){
+    fun transactionCreation(depense: String, description: Int, date: String){
         val newTransaction = Transaction(depense, description, date)
 
         object : AsyncTask<Void, Void, Void>() {
@@ -26,7 +26,7 @@ class TransactionCreation {
     }
 
     fun transactionDeletation(uid: Long){
-        val currentTransaction = Transaction("","","", uid)
+        val currentTransaction = Transaction("",0,"", uid)
 
         object : AsyncTask<Void, Void, Void>() {
             override fun doInBackground(vararg params: Void?): Void? {

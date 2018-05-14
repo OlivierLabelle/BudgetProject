@@ -3,6 +3,8 @@
     android:id="@android:id/text1"
     android:singleLine="true"
     android:textStyle="bold"
+    android:textSize="24sp"
+    android:layout_margin="4dp"
     android:textColor="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

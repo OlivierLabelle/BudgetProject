@@ -4,7 +4,7 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 
-@Database(entities = arrayOf(Transaction::class), version = 1)
+@Database(entities = arrayOf(Transaction::class), version = 2)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao

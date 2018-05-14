@@ -23,13 +23,12 @@ object DepenseDetails {
     var list_of_items = (BudgetApplication.getContext().resources.getStringArray(R.array.description))
 
     @SuppressLint("InflateParams")
-    fun createTransaction(context: Activity, uid: Long? = null, updating: Boolean): AlertDialog {
+    fun createTransaction(context: Activity, uid: Long? = null): AlertDialog {
         val alertDialog = AlertDialog.Builder(context)
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val alertLayout = layoutInflater.inflate(R.layout.new_transaction, null, false) as LinearLayout
         alertDialog.setView(alertLayout)
         val edDepense = alertLayout.findViewById<EditText>(R.id.ed_montant)
-        val edDescription = alertLayout.findViewById<EditText>(R.id.ed_description)
         val edDate = alertLayout.findViewById<EditText>(R.id.ed_date)
         val spinner = alertLayout.findViewById<Spinner>(R.id.spinner)
         val spinnerAdapter = ArrayAdapter(BudgetApplication.getContext(), R.layout.custom_spinner, list_of_items)
@@ -37,14 +36,14 @@ object DepenseDetails {
         spinner!!.adapter = spinnerAdapter
         alertDialog.setPositiveButton(R.string.save, { dialog, which ->
             val depense = edDepense.text.toString()
-            val description = edDescription.text.toString()
+            val description = spinner.selectedItemPosition
             val date = edDate.text.toString()
             TransactionCreation().transactionCreation(depense, description, date)
             //Todo Assurer 2 champs sont valide.
         })
         alertDialog.setNegativeButton(R.string.cancel, { dialog, which ->
         })
-        if (updating){
+        if (uid != null){
             alertDialog.setNeutralButton(R.string.delete, { dialog, which ->
                 TransactionCreation().transactionDeletation(uid!!)
                 MainActivity().recyclerView?.adapter?.notifyDataSetChanged()

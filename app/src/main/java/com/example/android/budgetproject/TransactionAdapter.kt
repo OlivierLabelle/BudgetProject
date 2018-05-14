@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.row_depense_fragment.view.*
 class TransactionAdapter(private val clickListener: TransactionClick? = null):
         ListAdapter<Transaction, TransactionAdapter.ViewHolder>(TransactionDiffCallback()) {
 
+    var list_of_items = (BudgetApplication.getContext().resources.getStringArray(R.array.description))
+
     interface TransactionClick{
         fun transactionClicked(uid: Long)
     }
@@ -30,7 +32,7 @@ class TransactionAdapter(private val clickListener: TransactionClick? = null):
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         fun bind(transaction: Transaction){
-            itemView.tv_depense_description.text = transaction.description
+            itemView.tv_depense_description.text = list_of_items[transaction.description]
             itemView.tv_depense_montant.text = transaction.depense
             itemView.tv_depense_date.text = transaction.date
             itemView.ll_row.setOnClickListener{

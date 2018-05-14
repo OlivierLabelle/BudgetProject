@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
 
     override fun newTransactionClicked(){
-        val ct = DepenseDetails.createTransaction(this, null, false)
+        val ct = DepenseDetails.createTransaction(this, null)
         ct.setOnDismissListener {
             setupRV()
         }
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
 
     override fun transactionClicked(uid: Long) {
-        val et = DepenseDetails.createTransaction(this, uid, true)
+        val et = DepenseDetails.createTransaction(this, uid)
         et.setOnDismissListener {
             setupRV()
         }
