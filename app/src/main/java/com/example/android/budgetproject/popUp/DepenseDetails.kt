@@ -67,7 +67,7 @@ object DepenseDetails{
             alertDialog.setPositiveButton(context.getString(R.string.create), { dialog, which ->
                 val depenseCreation = edDepense.text.toString().toFloat()
                 val descriptionCreation = spinner.selectedItemPosition
-                val dateCreation = "string"
+                val dateCreation = completedDate!!
                 TransactionCreation().transactionCreation(depenseCreation, descriptionCreation, dateCreation)
                 //Todo Assurer 2 champs sont valide.
             })

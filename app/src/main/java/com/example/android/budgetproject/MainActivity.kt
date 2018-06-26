@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         vm.listener = this
     }
 
+
+
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         vm.budgetTotal.set(budgetTotal)
     }

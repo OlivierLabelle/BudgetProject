@@ -35,7 +35,7 @@ class TransactionAdapter(private val clickListener: TransactionClick? = null):
             val depenseNumber = transaction.depense.toString() + "$"
             itemView.tv_depense_montant.text = depenseNumber
             itemView.tv_depense_description.text = list_of_items[transaction.description]
-            itemView.tv_depense_date.text = transaction.date
+            itemView.tv_depense_date.text = transaction.date.substring(5)
             itemView.ll_row.setOnClickListener{
                clickListener?.transactionClicked(transaction.depense, transaction.description, transaction.date, transaction.uid)
             }
