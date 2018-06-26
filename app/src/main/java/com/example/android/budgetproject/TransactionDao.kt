@@ -20,4 +20,7 @@ interface TransactionDao {
 
     @Delete
     fun deleteTransaction(transaction: Transaction)
+
+    @Update
+    fun updateTransaction(transaction: Transaction)
 }

@@ -17,7 +17,7 @@ class TransactionAdapter(private val clickListener: TransactionClick? = null):
     var list_of_items = (BudgetApplication.getContext().resources.getStringArray(R.array.description))
 
     interface TransactionClick{
-        fun transactionClicked(uid: Long)
+        fun transactionClicked(depense: Float, description: Int, date: String, uid: Long)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,11 +32,12 @@ class TransactionAdapter(private val clickListener: TransactionClick? = null):
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         fun bind(transaction: Transaction){
+            val depenseNumber = transaction.depense.toString() + "$"
+            itemView.tv_depense_montant.text = depenseNumber
             itemView.tv_depense_description.text = list_of_items[transaction.description]
-            itemView.tv_depense_montant.text = transaction.depense
             itemView.tv_depense_date.text = transaction.date
             itemView.ll_row.setOnClickListener{
-               clickListener?.transactionClicked(transaction.uid)
+               clickListener?.transactionClicked(transaction.depense, transaction.description, transaction.date, transaction.uid)
             }
         }
     }

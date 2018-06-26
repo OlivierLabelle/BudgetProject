@@ -9,12 +9,18 @@
     <string name="budget_restant">budget restant</string>
     <string name="update_budget">Update Budget</string>
     <string name="new_depense">New depense</string>
+    <string name="empty_depense">Depense cannot be empty</string>
+
+    <string name="create">Create</string>
+    <string name="update">Update</string>
+
 
     <array name="description">
-        <item>Default</item>
+        <item>unknown</item>
         <item>Bills</item>
         <item>Resto</item>
         <item>Grocery</item>
         <item>Fun</item>
+        <item>Others</item>
     </array>
 </resources>

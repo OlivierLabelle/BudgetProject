@@ -9,7 +9,7 @@ class TransactionCreation {
 
     val db = MyDatabase
 
-    fun transactionCreation(depense: String, description: Int, date: String){
+    fun transactionCreation(depense: Float, description: Int, date: String){
         val newTransaction = Transaction(depense, description, date)
 
         object : AsyncTask<Void, Void, Void>() {
@@ -26,7 +26,7 @@ class TransactionCreation {
     }
 
     fun transactionDeletation(uid: Long){
-        val currentTransaction = Transaction("",0,"", uid)
+        val currentTransaction = Transaction(10F,0,"", uid)
 
         object : AsyncTask<Void, Void, Void>() {
             override fun doInBackground(vararg params: Void?): Void? {
@@ -37,6 +37,22 @@ class TransactionCreation {
             override fun onPostExecute(result: Void?) {
                 super.onPostExecute(result)
                 Toast.makeText(BudgetApplication.getContext(), "Transaction deleted", Toast.LENGTH_SHORT).show()
+            }
+        }.execute()
+    }
+
+    fun transactionUpdatation(depense: Float, description: Int, date: String, uid: Long){
+        val oldTransaction = Transaction(depense, description, date, uid)
+
+        object : AsyncTask<Void, Void, Void>() {
+            override fun doInBackground(vararg params: Void?): Void? {
+                db.getInstance().transactionDao().updateTransaction(oldTransaction)
+                return null
+            }
+
+            override fun onPostExecute(result: Void?) {
+                super.onPostExecute(result)
+                Toast.makeText(BudgetApplication.getContext(), "Transaction updated", Toast.LENGTH_SHORT).show()
             }
         }.execute()
     }

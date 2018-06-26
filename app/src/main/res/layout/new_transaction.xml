@@ -64,10 +64,11 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/ed_date"
+    <Button
+        android:id="@+id/bt_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:text="choose a date"
         android:textColor="@color/colorAccent"
         android:textStyle="bold" />

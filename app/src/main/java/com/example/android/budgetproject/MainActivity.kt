@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         ct.show()
     }
 
-    override fun transactionClicked(uid: Long) {
-        val et = DepenseDetails.createTransaction(this, uid)
+    override fun transactionClicked(depense: Float, description: Int, date: String, uid: Long) {
+        val et = DepenseDetails.createTransaction(this,depense,description,date, uid)
         et.setOnDismissListener {
             setupRV()
         }
